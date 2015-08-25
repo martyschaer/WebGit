@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ex_one/index</title>
+</head>
+<body>
+	<button onclick="startDemo()">Start Demo</button>
+	<script type="text/javascript">
+		function startDemo(){
+			var out = document.getElementById('output');
+
+			for (var i = 0; i <= 9; i++) {
+				out.innerHTML = out.innerHTML + (i * i + "<br>");	
+			};
+		}
+	</script>
+	<br>
+	<span id="output"></span>
+
+</body>
+</html>
