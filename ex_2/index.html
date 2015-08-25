@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ex_two/index</title>
+</head>
+<body>
+	<button onclick="startDemo()">Start Demo</button>
+	<script type="text/javascript">
+		function startDemo(){
+			var out = document.getElementById('output');
+			var j = "0";
+			for (var i = 1; i <= 10; i++) {
+				out.innerHTML = out.innerHTML + (j + "<br>");	
+				j += i.toString();
+			};
+		}
+	</script>
+	<br>
+	<span id="output"></span>
+
+</body>
+</html>
