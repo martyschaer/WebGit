@@ -1,9 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>ex_three/index</title>
 </head>
 <body>
-
+	<script>
+	window.onload = script();
+	function script(){
+		var sie = confirm("Möchten sie gesiezt werden?");
+		var name = window.prompt("Falls Sie mit Ihrem Namen angesprochen werden möchten, geben Sie ihn hier ein:");
+		if(sie){
+			if(name != ""){
+				document.body.innerHTML = "Sie";
+				printStrong(name);
+			}else{
+				document.body.innerHTML = "Sie";
+				printStrong("NoNameGiven");
+			}
+		}else{
+			if(name != ""){
+				document.body.innerHTML = "Du";
+				printStrong(name);
+			}else{
+				document.body.innerHTML = "Du";
+				printStrong("NoNameGiven");
+			}
+		}
+	}
+	function printStrong(text){
+		document.body.innerHTML += "<strong>" + text + "</strong>";
+	}
+	</script>
 </body>
 </html>
