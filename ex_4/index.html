@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ex_four/index</title>
+</head>
+<body>
+	<table id="peopleTable">
+		<tr>
+			<th>Name</th>
+			<th>Anschrift</th>
+			<th>PLZ</th>
+			<th>Ort</th>
+		</tr>
+	</table>
+	<script>
+	window.onload = script();
+	function script(){
+		var personen = [];
+		personen.push(makePerson("Max", "Strasse 22", "1337", "earth"));
+		personen.push(makePerson("Mösli", "Kirche 45", "5643", "Gösgen"));
+		console.log(personen);
+		outputArray(personen);
+	}
+
+	function makePerson(pName, pAnschrift, pPlz, pOrt){
+		return {name:pName, anschrift:pAnschrift, plz:pPlz, ort:pOrt};
+	}
+
+	function outputArray(arr){
+		vStr = "";
+		for(var i = 0; i < arr.length; i++){
+			vStr += "<tr>";
+			vStr += "<td>" + arr[i].name + "</td>";
+			vStr += "<td>" + arr[i].anschrift + "</td>";
+			vStr += "<td>" + arr[i].plz + "</td>";
+			vStr += "<td>" + arr[i].ort + "</td>";
+			vStr += "</tr>";
+		}
+		console.log(vStr);
+		document.getElementById("peopleTable").innerHTML += vStr;
+	}
+	</script>
+</body>
+</html>
