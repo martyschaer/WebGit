@@ -1,0 +1,23 @@
+html, body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 1);
+}
+
+div#div_parent{
+	margin: 100px auto 0 auto;
+	background-color: rgba(123, 123, 123, 1);
+	height: 350px;
+	width: 30%;
+	min-width: 320px;
+}
+
+div#div_login{
+	height: inherit;
+	width: 100%;
+	background-color: rgba(0, 128, 255, 1);
+	box-shadow: 6px 6px 25px 0px rgba(0,0,0,0.75);
+	/*display: none;*/
+}
