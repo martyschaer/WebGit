@@ -12,72 +12,88 @@
 		</header>
 		<div id="div_parent">
 			<div id="div_login">
-				<form onsubmit="foo">
-					<h1>Register</h1>
-					<label for="in_email">Email:</label>
-					<br/>
-					<input type="email" id="in_email" name="email" required="true"/>
-					<br/>
+				<form name="regform" onsubmit="foo">
+					<div id="wrapper">
+						<h1>Register</h1>
+						<label for="in_email">Email:</label>
+						<br/>
+						<input type="email" id="in_email" name="email" required/>
+						<br/>
 
-					<label for="pw">Password:</label>
-					<br/>
-					<input type="password" id="in_pw" name="pw" required="true"/>
-					<br/>
+						<label for="pw">Password:</label>
+						<br/>
+						<input type="password" id="in_pw" name="pw" required="true" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\(\)\[\]{}?!$%\/=\*+~,.;:<>\-_])[^ ]{8,}$" required/>
+						<!--
+							Regex from (and edited to match the specs):
+							http://stackoverflow.com/questions/10729347/regex-expression-for-password-rules/10729398#10729398
 
-					<label for="pw_re">Confirm Password:</label>
-					<br/>
-					<input type="password" id="in_pw_re" name="pw_re" required="true"/>
-					<br/>
+							^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\(\)\[\]{}?!$%\/=\*+~,.;:<>\-_])[^ ]{8,}$
+							
+						-->
+						<br/>
 
-					<label for="gender">Gender:</label>
-					<br/>
-					<input type="radio" value="male" name="gender"> Male
-					<input type="radio" value="female" name="gender"> Female
-					<input type="radio" value="other" name="gender"> Other
-					<br/>
+						<label for="pw_re">Confirm Password:</label>
+						<br/>
+						<input type="password" id="in_pw_re" name="pw_re" required/>
+						<br/>
 
-					<label>Colour:</label>
-					<br/>
-					<input type="checkbox" name="chk_1" class="in_chk"/> Red
-					<input type="checkbox" name="chk_2" class="in_chk"/> Green
-					<input type="checkbox" name="chk_3" class="in_chk"/> Blue
-					<input type="checkbox" name="chk_4" class="in_chk"/> Void
-					<br/>
+						<label for="gender">Gender:</label>
+						<br/>
+						<input type="radio" value="male" name="gender"> Male
+						<input type="radio" value="female" name="gender"> Female
+						<input type="radio" value="other" name="gender"> Other
+						<br/>
 
-					<label for="in_party">Party:</label>
-					<br/>
-					<select name="party" id="in_party" required="true">
-						<option>SVP</option>
-						<option>SP</option>
-						<option>FDP</option>
-						<option>CVP</option>
-						<option>BDP</option>
-						<option>GPS</option>
-						<option>GLP</option>
-						<option>EVP</option>
-						<option>Pirates</option>
-					</select>
-					<br/>
-					<input type="submit" value="send">
+						<label>Colour:</label>
+						<br/>
+						<input type="checkbox" name="chk_1" class="in_chk" id="in_chk_1"/> Red
+						<input type="checkbox" name="chk_2" class="in_chk" id="in_chk_2"/> Green
+						<input type="checkbox" name="chk_3" class="in_chk" id="in_chk_3"/> Blue
+						<input type="checkbox" name="chk_4" class="in_chk" id="in_chk_4"/> Void
+						<br/>
+
+						<label for="in_party">Party:</label>
+						<br/>
+						<select name="party" id="in_party" required>
+							<option>SVP</option>
+							<option>SP</option>
+							<option>FDP</option>
+							<option>CVP</option>
+							<option>BDP</option>
+							<option>GPS</option>
+							<option>GLP</option>
+							<option>EVP</option>
+							<option>Pirates</option>
+						</select>
+						<br/>
+						<br/>
+						<input type="submit" value="send">
+					</div>
 				</form>
 			</div>
 	</body>
 	<script type="text/javascript">
-		/*$(document).ready(function(){
-			$("#div_login").show();
-		});*/
 
 		window.onload = function(){
+			//set listeners on .onchange events of the password fields
 			document.getElementById("in_pw").onchange = validatePw;
 			document.getElementById("in_pw_re").onchange = validatePw;
 		}
 
 		function validatePw(){
+			//save passwords to variable
 			var pass1 = document.getElementById("in_pw").value;
 			var pass2 = document.getElementById("in_pw_re").value;
-			console.log(pass1);
-			console.log(pass2);
 
+			//check passwords, in case browser support for html5 validation is not present
+			var patt = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\(\)\[\]{}?!$%\/=\*+~,.;:<>\-_])[^ ]{8,}$/;
+			if(!patt.test(pass1)){
+				document.getElementById("in_pw").setCustomValidity("Password doesn't match the requirements");
+			}else{
+				document.getElementById("in_pw").setCustomValidity("");
+			}
+
+			//check if the two passwords are the same
 			if(pass1 != pass2){
 				document.getElementById("in_pw_re").setCustomValidity("Passwords don't match!");
 			}else{
